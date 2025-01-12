@@ -1,0 +1,36 @@
+version: '3'
+services:  
+  db:
+    image: mysql:8.3.0
+    restart: always
+    hostname: mysqlDB
+    command: --default-authentication-plugin=caching_sha2_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - '${DB_PORT}:${DB_PORT_DOCKER}' # puertoLocal:puertoDocker
+    networks:
+      - default
+
+  web:
+    build: .
+    image: php:8.2.11-apache
+    restart: always      
+    ports:
+      - "8080:80"
+    tty: true
+    stdin_open: true
+    volumes:
+      - './app:/var/www/html'
+    networks:
+      - default 
+    depends_on:
+      - db
+
+volumes:
+  mysql-data:
