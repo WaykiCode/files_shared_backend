@@ -11,7 +11,7 @@ services:
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./mysql-data-files-shared:/var/lib/mysql
     ports:
       - '${DB_PORT}:${DB_PORT_DOCKER}' # puertoLocal:puertoDocker
     networks:
@@ -33,4 +33,4 @@ services:
       - db
 
 volumes:
-  mysql-data:
+  mysql-data-files-shared:
