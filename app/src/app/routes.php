@@ -14,20 +14,22 @@ $app->group('', function(RouteCollectorProxy $group){
 $app->group('/files', function(RouteCollectorProxy $group){
 	
 	$group->post('/upload', 'App\controllers\filesController:create');
+	
+	$group->put('/recover/{id}', 'App\controllers\filesController:recover');
 
-	// $group->put('/update/{id}', 'App\controllers\roleController:update')
-	// 			->add('App\middleware\CheckRequestBodyRole:_body')
-	// 			->add(JwtAuth::class);
+	$group->get('/get', 'App\controllers\filesController:get');
 
-	// $group->delete('/delete/{id}', 'App\controllers\roleController:delete')
-	// 			->add(JwtAuth::class);
+	$group->get('/getInactive', 'App\controllers\filesController:getInactive');
+
+	$group->get('/uploads/{filename}', 'App\controllers\filesController:getFile');
+	
+	$group->delete('/delete/{id}', 'App\controllers\filesController:delete');
+
+	$group->delete('/deletePermanent/{id}', 'App\controllers\filesController:deletePermanent');
 	
 	// $group->get('/getAll', 'App\controllers\roleController:getAll')
 	// 			->add(JwtAuth::class);
-
-	// $group->get('/get', 'App\controllers\roleController:get')
-	// 			->add(JwtAuth::class);
-
+	
 	// $group->get('/get/{id}', 'App\controllers\roleController:getById')
 	// 			->add(JwtAuth::class);
 

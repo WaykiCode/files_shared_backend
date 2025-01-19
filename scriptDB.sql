@@ -11,5 +11,10 @@ CREATE TABLE IF NOT EXISTS pdf_files (
     p_id INT AUTO_INCREMENT PRIMARY KEY,
     p_filename VARCHAR(255) NOT NULL,
     p_file_url VARCHAR(255) NOT NULL,
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    p_status bool default true,
+    p_create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    p_uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    p_delete_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+select * from pdf_files where p_status = true;
